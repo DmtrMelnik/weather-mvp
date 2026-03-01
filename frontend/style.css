@@ -1,0 +1,86 @@
+* {
+    box-sizing: border-box;
+  }
+  
+  body {
+    font-family: system-ui, -apple-system, sans-serif;
+    margin: 0;
+    padding: 1rem;
+    background: #1a1a1a;
+    color: #e0e0e0;
+  }
+  
+  .container {
+    max-width: 800px;
+    margin: 0 auto;
+  }
+  
+  h1 {
+    margin-top: 0;
+  }
+  
+  .search {
+    margin-bottom: 1.5rem;
+  }
+  
+  .search label {
+    display: block;
+    margin-bottom: 0.25rem;
+  }
+  
+  .search input {
+    padding: 0.5rem;
+    width: 100%;
+    max-width: 280px;
+    margin-right: 0.5rem;
+    margin-bottom: 0.5rem;
+    border: 1px solid #444;
+    border-radius: 4px;
+    background: #2a2a2a;
+    color: #e0e0e0;
+  }
+  
+  .search button {
+    padding: 0.5rem 1rem;
+    background: #0a7ea4;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  .search button:hover {
+    background: #096a8a;
+  }
+  
+  #results {
+    min-height: 2rem;
+  }
+  
+  .note {
+    color: #aaa;
+    font-size: 0.9rem;
+    margin-bottom: 1rem;
+  }
+  
+  .error {
+    color: #e57373;
+  }
+  
+  .cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 1rem;
+  }
+  
+  .card {
+    background: #2a2a2a;
+    border: 1px solid #444;
+    border-radius: 8px;
+    padding: 1rem;
+  }
+  
+  .card h3 {
+    margin-top: 0;
+    font-size: 1rem;
+  }
