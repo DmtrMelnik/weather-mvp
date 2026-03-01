@@ -1,3 +1,7 @@
+from pathlib import Path
+from dotenv import load_dotenv
+load_dotenv(Path(__file__).resolve().parent.parent / "api.env")
+
 from backend.services.aggregator import get_weather_all_sources
 from flask import Flask, request, jsonify
 from flask_cors import CORS
