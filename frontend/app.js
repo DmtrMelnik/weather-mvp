@@ -1,4 +1,4 @@
-const API_BASE = "http://127.0.0.1:5000";
+const API_BASE = "https://dzmitrymelnik.pythonanywhere.com";
 
 document.getElementById("btn-weather").addEventListener("click", async () => {
   const city = document.getElementById("city").value.trim();
