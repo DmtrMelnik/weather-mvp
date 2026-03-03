@@ -1,0 +1,1 @@
+echo "Запуск: cd backend && python -m app (или python3 -m backend.app из корня)"
