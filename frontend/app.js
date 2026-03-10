@@ -54,9 +54,9 @@ document.getElementById("btn-weather").addEventListener("click", async () => {
           <div class="card ${isPrimary ? "card-primary" : ""}">
             <h3>${s.source || "Источник"}${isPrimary ? ' <span class="badge">основной</span>' : ""}</h3>
             <p>Температура: ${s.temperature != null ? s.temperature + " °C" : "—"}</p>
-            <p>Ветер: ${s.wind_speed != null ? s.wind_speed + " км/ч" : "—"}</p>
+            <p>Ветер: ${s.wind_speed != null ? s.wind_speed + " м/с" : "—"}</p>
             ${s.wind_direction != null ? `<p>Направление: ${s.wind_direction}°</p>` : ""}
-            ${s.wind_gusts != null ? `<p>Порывы: ${s.wind_gusts} км/ч</p>` : ""}
+            ${s.wind_gusts != null ? `<p>Порывы: ${s.wind_gusts} м/с</p>` : ""}
             ${s.error ? `<p class="error">${s.error}</p>` : ""}
           </div>
         `;
@@ -133,8 +133,8 @@ document.getElementById("btn-forecast").addEventListener("click", async () => {
             <h3>${dateStr}</h3>
             <p>Макс: ${d.temperature_2m_max != null ? d.temperature_2m_max + " °C" : "—"}</p>
             <p>Мин: ${d.temperature_2m_min != null ? d.temperature_2m_min + " °C" : "—"}</p>
-            <p>Ветер макс: ${d.wind_speed_10m_max != null ? d.wind_speed_10m_max + " км/ч" : "—"}</p>
-            <p>Порывы: ${d.wind_gusts_10m_max != null ? d.wind_gusts_10m_max + " км/ч" : "—"}</p>
+            <p>Ветер макс: ${d.wind_speed_10m_max != null ? d.wind_speed_10m_max + " м/с" : "—"}</p>
+            <p>Порывы: ${d.wind_gusts_10m_max != null ? d.wind_gusts_10m_max + " м/с" : "—"}</p>
             <p>Направление: ${d.wind_direction_10m_dominant != null ? d.wind_direction_10m_dominant + "°" : "—"}</p>
           </div>
         `;
@@ -146,7 +146,7 @@ document.getElementById("btn-forecast").addEventListener("click", async () => {
     daysEl.innerHTML = daysHtml;
 
     if (data.wind_by_height && data.wind_by_height.length) {
-      let windHtml = '<table class="wind-table"><thead><tr><th>Высота</th><th>Скорость, км/ч</th><th>Направление, °</th></tr></thead><tbody>';
+      let windHtml = '<table class="wind-table"><thead><tr><th>Высота</th><th>Скорость, м/с</th><th>Направление, °</th></tr></thead><tbody>';
       data.wind_by_height.forEach((w) => {
         windHtml += `<tr><td>${w.height_label}</td><td>${w.speed != null ? w.speed : "—"}</td><td>${w.direction != null ? w.direction : "—"}</td></tr>`;
       });

@@ -8,6 +8,7 @@ def get_weather_open_meteo(lat: float, lon: float) -> dict:
         "latitude": lat,
         "longitude": lon,
         "current": "temperature_2m,wind_speed_10m",
+        "wind_speed_unit": "ms",
     }
     resp = requests.get(FORECAST_URL, params=params, timeout=10)
     resp.raise_for_status()
@@ -37,6 +38,7 @@ def get_forecast_open_meteo_fallback(
         "forecast_days": min(max(days, 1), 16),
         "hourly": "temperature_2m,wind_speed_10m,wind_direction_10m,wind_gusts_10m",
         "daily": "temperature_2m_max,temperature_2m_min,wind_speed_10m_max,wind_gusts_10m_max,wind_direction_10m_dominant,precipitation_sum,weather_code",
+        "wind_speed_unit": "ms",
     }
     try:
         resp = requests.get(FORECAST_URL, params=params, timeout=10)
