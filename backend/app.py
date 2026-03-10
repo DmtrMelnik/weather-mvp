@@ -5,6 +5,7 @@ load_dotenv(Path(__file__).resolve().parent.parent / "api.env")
 from backend.services.aggregator import get_weather_all_sources
 from backend.services.geocoding import geocode_first
 from backend.services.dwd_icon import get_forecast_dwd_icon
+from backend.services.open_meteo import get_forecast_open_meteo_fallback
 from flask import Flask, request, jsonify
 from flask_cors import CORS
 
@@ -55,7 +56,11 @@ def api_forecast():
     days = request.args.get("days", type=int, default=7)
     result = get_forecast_dwd_icon(lat, lon, days=days, timezone=timezone)
     if result.get("error"):
-        return jsonify({"error": result["error"]}), 502
+        # При недоступности DWD ICON отдаём прогноз через обычный Open-Meteo (200, а не 502)
+        fallback = get_forecast_open_meteo_fallback(lat, lon, days=days, timezone=timezone)
+        if not fallback.get("error"):
+            return jsonify(fallback)
+        return jsonify({"error": result["error"], "daily": [], "wind_by_height": []}), 200
     return jsonify(result)
 
 
