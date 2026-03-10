@@ -24,7 +24,13 @@ def geocode(city: str, lang: str = "ru", count: int = 10) -> list[dict]:
 def _sort_by_population(results: list[dict]) -> list[dict]:
     """Сортировка по населению (сначала крупные города), без population — в конец."""
     def key(r):
-        return r.get("population") or 0
+        p = r.get("population")
+        if p is None:
+            return 0
+        try:
+            return int(p)
+        except (TypeError, ValueError):
+            return 0
     return sorted(results, key=key, reverse=True)
 
 
