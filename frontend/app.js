@@ -13,6 +13,7 @@ document.getElementById("btn-weather").addEventListener("click", async () => {
   const lonVal = document.getElementById("lon").value;
   const resultsEl = document.getElementById("results");
   resultsEl.innerHTML = "<p>Загрузка…</p>";
+  document.getElementById("current-weather-section").removeAttribute("aria-hidden");
 
   const lat = parseNum(latVal, -90, 90);
   const lon = parseNum(lonVal, -180, 180);
@@ -47,12 +48,15 @@ document.getElementById("btn-weather").addEventListener("click", async () => {
     }
     if (data.sources && data.sources.length) {
       html += '<div class="cards">';
-      data.sources.forEach((s) => {
+      data.sources.forEach((s, index) => {
+        const isPrimary = index === 0 && (s.source || "").toLowerCase().includes("dwd");
         html += `
-          <div class="card">
-            <h3>${s.source || "Источник"}</h3>
+          <div class="card ${isPrimary ? "card-primary" : ""}">
+            <h3>${s.source || "Источник"}${isPrimary ? ' <span class="badge">основной</span>' : ""}</h3>
             <p>Температура: ${s.temperature != null ? s.temperature + " °C" : "—"}</p>
             <p>Ветер: ${s.wind_speed != null ? s.wind_speed + " км/ч" : "—"}</p>
+            ${s.wind_direction != null ? `<p>Направление: ${s.wind_direction}°</p>` : ""}
+            ${s.wind_gusts != null ? `<p>Порывы: ${s.wind_gusts} км/ч</p>` : ""}
             ${s.error ? `<p class="error">${s.error}</p>` : ""}
           </div>
         `;
