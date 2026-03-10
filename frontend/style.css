@@ -82,6 +82,16 @@
     min-height: 2rem;
   }
   
+  .location-info {
+    color: #aaa;
+    font-size: 0.9rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .location-info strong {
+    color: #e0e0e0;
+  }
+
   .note {
     color: #aaa;
     font-size: 0.9rem;
