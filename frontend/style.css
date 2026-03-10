@@ -69,6 +69,15 @@
     background: #4a4a4a;
   }
   
+  .current-weather-section[aria-hidden="true"] {
+    display: none;
+  }
+
+  .current-weather-section h2 {
+    margin: 1.5rem 0 0.75rem;
+    font-size: 1.1rem;
+  }
+
   #results {
     min-height: 2rem;
   }
@@ -99,6 +108,17 @@
   .card h3 {
     margin-top: 0;
     font-size: 1rem;
+  }
+
+  .card-primary {
+    border-color: #0a7ea4;
+    box-shadow: 0 0 0 1px #0a7ea4;
+  }
+
+  .badge {
+    font-size: 0.75rem;
+    color: #0a7ea4;
+    font-weight: normal;
   }
 
   .forecast-section {
