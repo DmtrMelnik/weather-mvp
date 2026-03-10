@@ -19,8 +19,10 @@ def _dwd_icon_result(lat: float, lon: float) -> dict:
 
 
 def get_weather_all_sources(lat: float, lon: float) -> list:
+    # Порядок: DWD ICON первый (основной интерес), затем Open-Meteo и OpenWeatherMap.
+    # Всегда возвращаем 3 источника; при ошибке DWD — карточка с полем "error".
     results = []
+    results.append(_dwd_icon_result(lat, lon))
     results.append(get_weather_open_meteo(lat, lon))
     results.append(get_weather_openweather(lat, lon))
-    results.append(_dwd_icon_result(lat, lon))
     return results
