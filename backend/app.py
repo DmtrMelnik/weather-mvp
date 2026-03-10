@@ -10,7 +10,8 @@ from flask import Flask, request, jsonify
 from flask_cors import CORS
 
 app = Flask(__name__)
-CORS(app)  # разрешает запросы с любых origin (для разработки)
+# Явно разрешаем запросы с любого origin (localhost, Vercel и т.д.)
+CORS(app, resources={r"/api/*": {"origins": "*"}})
 
 
 def _get_lat_lon_timezone():
