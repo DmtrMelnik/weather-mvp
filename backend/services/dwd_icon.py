@@ -42,6 +42,7 @@ def get_current_weather_dwd_icon(lat: float, lon: float) -> dict:
         "latitude": lat,
         "longitude": lon,
         "current": "temperature_2m,wind_speed_10m,wind_direction_10m,wind_gusts_10m",
+        "wind_speed_unit": "ms",
     }
     try:
         resp = requests.get(DWD_ICON_URL, params=params, timeout=REQUEST_TIMEOUT)
@@ -83,6 +84,7 @@ def get_forecast_dwd_icon(
         "forecast_days": min(max(days, 1), 10),
         "hourly": HOURLY_WIND_WITH_PRESSURE,
         "daily": DAILY_FORECAST,
+        "wind_speed_unit": "ms",
     }
     try:
         resp = requests.get(DWD_ICON_URL, params=params, timeout=REQUEST_TIMEOUT)
