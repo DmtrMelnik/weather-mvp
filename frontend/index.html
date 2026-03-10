@@ -11,10 +11,22 @@
         <h1>Погода из нескольких источников</h1>
         <section class="search">
             <label for="city">Город</label>
-            <input type="text" id="city" placeholder="Например: Berlin" />
+            <input type="text" id="city" placeholder="Например: Минск, Berlin" />
+            <p class="search-divider">Или координаты</p>
+            <label for="lat">Широта</label>
+            <input type="number" id="lat" placeholder="53.9" step="any" min="-90" max="90" />
+            <label for="lon">Долгота</label>
+            <input type="number" id="lon" placeholder="27.5" step="any" min="-180" max="180" />
             <button type="button" id="btn-weather">Показать погоду</button>
+            <button type="button" id="btn-forecast" class="btn-secondary">Прогноз на неделю</button>
         </section>
         <div id="results"></div>
+        <section id="forecast-section" class="forecast-section" aria-hidden="true">
+            <h2>Прогноз на неделю (DWD ICON)</h2>
+            <div id="forecast-days"></div>
+            <h3>Ветер по высотам (сейчас)</h3>
+            <div id="wind-by-height"></div>
+        </section>
     </main>
     <script src="app.js"></script>
 </body>

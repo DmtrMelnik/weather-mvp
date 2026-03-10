@@ -27,6 +27,12 @@
     display: block;
     margin-bottom: 0.25rem;
   }
+
+  .search-divider {
+    margin: 1rem 0 0.5rem;
+    color: #aaa;
+    font-size: 0.9rem;
+  }
   
   .search input {
     padding: 0.5rem;
@@ -51,6 +57,16 @@
   
   .search button:hover {
     background: #096a8a;
+  }
+
+  .btn-secondary {
+    margin-left: 0.5rem;
+    background: #3a3a3a;
+    border: 1px solid #555;
+  }
+
+  .btn-secondary:hover {
+    background: #4a4a4a;
   }
   
   #results {
@@ -83,4 +99,47 @@
   .card h3 {
     margin-top: 0;
     font-size: 1rem;
+  }
+
+  .forecast-section {
+    margin-top: 2rem;
+  }
+
+  .forecast-section[aria-hidden="true"] {
+    display: none;
+  }
+
+  .forecast-section h2,
+  .forecast-section h3 {
+    margin: 1.5rem 0 0.75rem;
+    font-size: 1.1rem;
+  }
+
+  .forecast-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    gap: 1rem;
+  }
+
+  .forecast-card p {
+    margin: 0.25rem 0;
+    font-size: 0.9rem;
+  }
+
+  .wind-table {
+    width: 100%;
+    max-width: 400px;
+    border-collapse: collapse;
+    margin-top: 0.5rem;
+  }
+
+  .wind-table th,
+  .wind-table td {
+    padding: 0.5rem;
+    text-align: left;
+    border: 1px solid #444;
+  }
+
+  .wind-table th {
+    background: #2a2a2a;
   }
