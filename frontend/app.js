@@ -43,10 +43,11 @@ document.getElementById("btn-weather").addEventListener("click", async () => {
     }
 
     let html = "";
-    if (data.location) {
+    if (data.location && (data.location.latitude != null && data.location.longitude != null)) {
       const loc = data.location;
       const locText = loc.country ? `${loc.name}, ${loc.country}` : loc.name;
-      html += `<p class="location-info">Погода для: <strong>${locText}</strong> (${loc.latitude?.toFixed(2)}, ${loc.longitude?.toFixed(2)})</p>`;
+      const coords = `${Number(loc.latitude).toFixed(2)}, ${Number(loc.longitude).toFixed(2)}`;
+      html += `<p class="location-info">Погода для: <strong>${locText}</strong> (${coords})</p>`;
     }
     if (data.note) {
       html += `<p class="note">${data.note}</p>`;
@@ -126,10 +127,11 @@ document.getElementById("btn-forecast").addEventListener("click", async () => {
     }
 
     let daysHtml = "";
-    if (data.location) {
+    if (data.location && (data.location.latitude != null && data.location.longitude != null)) {
       const loc = data.location;
       const locText = loc.country ? `${loc.name}, ${loc.country}` : loc.name;
-      daysHtml += `<p class="location-info">Прогноз для: <strong>${locText}</strong> (${loc.latitude?.toFixed(2)}, ${loc.longitude?.toFixed(2)})</p>`;
+      const coords = `${Number(loc.latitude).toFixed(2)}, ${Number(loc.longitude).toFixed(2)}`;
+      daysHtml += `<p class="location-info">Прогноз для: <strong>${locText}</strong> (${coords})</p>`;
     }
     if (data.forecast_note) {
       daysHtml += `<p class="note">${data.forecast_note}</p>`;
