@@ -1,6 +1,8 @@
 import requests
 
 DWD_ICON_URL = "https://api.open-meteo.com/v1/dwd-icon"
+# Короткий таймаут, чтобы не блокировать ответ при недоступности DWD (например на PythonAnywhere)
+REQUEST_TIMEOUT = 8
 
 HOURLY_WIND_FIXED = (
     "temperature_2m,wind_speed_10m,wind_direction_10m,wind_gusts_10m,"
@@ -42,7 +44,7 @@ def get_current_weather_dwd_icon(lat: float, lon: float) -> dict:
         "current": "temperature_2m,wind_speed_10m,wind_direction_10m,wind_gusts_10m",
     }
     try:
-        resp = requests.get(DWD_ICON_URL, params=params, timeout=15)
+        resp = requests.get(DWD_ICON_URL, params=params, timeout=REQUEST_TIMEOUT)
         resp.raise_for_status()
         data = resp.json()
         cur = data.get("current", {})
@@ -83,14 +85,14 @@ def get_forecast_dwd_icon(
         "daily": DAILY_FORECAST,
     }
     try:
-        resp = requests.get(DWD_ICON_URL, params=params, timeout=15)
+        resp = requests.get(DWD_ICON_URL, params=params, timeout=REQUEST_TIMEOUT)
         resp.raise_for_status()
         data = resp.json()
         use_pressure_heights = True
     except requests.RequestException:
         params["hourly"] = HOURLY_WIND_FIXED
         try:
-            resp = requests.get(DWD_ICON_URL, params=params, timeout=15)
+            resp = requests.get(DWD_ICON_URL, params=params, timeout=REQUEST_TIMEOUT)
             resp.raise_for_status()
             data = resp.json()
             use_pressure_heights = False

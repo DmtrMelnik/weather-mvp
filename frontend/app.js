@@ -53,6 +53,7 @@ document.getElementById("btn-weather").addEventListener("click", async () => {
             <h3>${s.source || "Источник"}</h3>
             <p>Температура: ${s.temperature != null ? s.temperature + " °C" : "—"}</p>
             <p>Ветер: ${s.wind_speed != null ? s.wind_speed + " км/ч" : "—"}</p>
+            ${s.error ? `<p class="error">${s.error}</p>` : ""}
           </div>
         `;
       });
@@ -110,12 +111,15 @@ document.getElementById("btn-forecast").addEventListener("click", async () => {
       return;
     }
 
-    if (data.error) {
+    if (data.error && (!data.daily || data.daily.length === 0)) {
       daysEl.innerHTML = `<p class="error">${data.error}</p>`;
       return;
     }
 
     let daysHtml = "";
+    if (data.forecast_note) {
+      daysHtml += `<p class="note">${data.forecast_note}</p>`;
+    }
     if (data.daily && data.daily.length) {
       daysHtml = '<div class="forecast-cards">';
       data.daily.forEach((d) => {
