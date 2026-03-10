@@ -13,7 +13,8 @@ document.getElementById("btn-weather").addEventListener("click", async () => {
   const lonVal = document.getElementById("lon").value;
   const resultsEl = document.getElementById("results");
   resultsEl.innerHTML = "<p>Загрузка…</p>";
-  document.getElementById("current-weather-section").removeAttribute("aria-hidden");
+  const currentSection = document.getElementById("current-weather-section");
+  if (currentSection) currentSection.removeAttribute("aria-hidden");
 
   const lat = parseNum(latVal, -90, 90);
   const lon = parseNum(lonVal, -180, 180);
@@ -110,7 +111,7 @@ document.getElementById("btn-forecast").addEventListener("click", async () => {
 
   daysEl.innerHTML = "<p>Загрузка…</p>";
   windEl.innerHTML = "";
-  forecastSection.removeAttribute("aria-hidden");
+  if (forecastSection) forecastSection.removeAttribute("aria-hidden");
 
   try {
     const res = await fetch(url);
@@ -137,7 +138,7 @@ document.getElementById("btn-forecast").addEventListener("click", async () => {
       daysHtml += `<p class="note">${data.forecast_note}</p>`;
     }
     if (data.daily && data.daily.length) {
-      daysHtml = '<div class="forecast-cards">';
+      daysHtml += '<div class="forecast-cards">';
       data.daily.forEach((d) => {
         const dateStr = d.date ? new Date(d.date).toLocaleDateString("ru-RU", { weekday: "short", day: "numeric", month: "short" }) : "";
         daysHtml += `
@@ -153,7 +154,7 @@ document.getElementById("btn-forecast").addEventListener("click", async () => {
       });
       daysHtml += "</div>";
     } else {
-      daysHtml = "<p>Нет данных по дням.</p>";
+      daysHtml += "<p>Нет данных по дням.</p>";
     }
     daysEl.innerHTML = daysHtml;
 
